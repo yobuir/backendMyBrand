@@ -2,7 +2,7 @@
 
 { 
   "version": "1.0.0",
-  "main": "index.html",
+  "main": "db.json",
   "scripts": {
     "json:server":"json-server --watch db.json"
   },
