@@ -2,9 +2,9 @@
 
 { 
   "version": "1.0.0",
-  "main": "db.json",
+  "main": "index.js",
   "scripts": {
-    "json:server":"node index.js"
+    "start":"node index.js"
   },
   "author": "",
   "license": "ISC",
