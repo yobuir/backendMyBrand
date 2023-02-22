@@ -50,20 +50,29 @@
       "id": 2
     }
   ],
-
-  "comments":[
-    { 
+  "comments": [
+    {
       "post_id": 1,
       "user_id": 1,
-      "comment":"this is a comment on this post",
+      "comment": "this is a comment on this post",
       "date": "Tue Feb 21 2023 09:14:27 GMT+0200 (Central Africa Time)",
       "id": 2
-    }, { 
+    },
+    {
       "post_id": 1,
       "user_id": 1,
-      "comment":"I have this friend who considers himself a professional in his field. When he encounters other professionals acting unprofessionally",
+      "comment": "I have this friend who considers himself a professional in his field. When he encounters other professionals acting unprofessionally",
       "date": "Tue Feb 21 2023 09:14:27 GMT+0200 (Central Africa Time)",
       "id": 2
     }
+  ],
+  "contacts": [
+    {
+      "name": "Mariam Goff",
+      "email": "tidap@mailinator.com",
+      "message": "Voluptatum excepturi",
+      "id": 1
+    }
+    
   ]
 }
