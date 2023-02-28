@@ -2,7 +2,6 @@ const fs= require('fs');
 const uud= require('uuid');
 
 const logger = (req,res,next) => {
-
     if (!fs.existsSync('./logs')){
 
         fs.mkdirSync('./logs', (error) => {
@@ -13,7 +12,6 @@ const logger = (req,res,next) => {
     fs.appendFile('./logs/log.txt', logs, (error)=>{
         console.log("Files Writing \t"+error);
     });
-
     next();
 }
 
