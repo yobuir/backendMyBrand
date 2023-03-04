@@ -18,7 +18,6 @@ const post_view =  async (req,res) => {
      });
 }
 
-
 const post_create = (req, res) => { 
 
    let userPost=req.body;
