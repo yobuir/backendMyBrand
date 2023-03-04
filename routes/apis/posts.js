@@ -1,22 +1,9 @@
 const express = require('express')
 const router = express.Router(); 
-const data= {};
+const postsController= require('../../controllers/apis/postsController');
+router.get('/all', postsController.post_index);
+router.post('/create',postsController.post_create);
+router.get('/:id',postsController.post_view);
+router.delete('/:id',postsController.post_delete);
 
-router.route('/')
-    .get((req,res) => {
-        res.json(data);
-    })
-    .post((req,res) => {
-        console.log(req.body)
-    })
-    .put((req,res) => {
-
-    })
-    .delete((req,res) => {
-
-    });
-
-    router.route('/:id').get((req,res) => {
-        res.json({id:req.params.id})
-    })
 module.exports =router;

@@ -5,9 +5,27 @@ const port=process.env.PORT || 3000;
 const cors=require('cors');
 const {logger } = require('./middleware/logEvents');
 const errorHandler  = require('./middleware/errorHandler');
+const mongoose= require('mongoose');
+const postRoutes=require('./routes/apis/posts');
+
+// connecting string
+const  dburl='mongodb+srv://admin:admin@mybrand.xzmbnkn.mongodb.net/website?retryWrites=true&w=majority' 
+mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
+.then ((result)=>{
+   app.listen(port,(error)=>{
+        console.log(`listening on ${port}`);
+    });
+}).catch((err)=>{
+    console.log(err);
+}); 
+
+
+
 
 // custom middleware
 app.use(logger);
+// this is for rendering the static files
+app.use(express.static(path.join(__dirname,'/public')));
 
 // third party middleware 
 const whiteList= ['http://127.0.0.1:5500','http://localhost:3000'];
@@ -21,33 +39,17 @@ const corsOptions = {
     },
     optionsSuccessStatus:200
 }
-app.use(cors(corsOptions));
+ 
+app.use(cors());
 
 
 // built in middleware to handle urlencoded
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
-// this is for rendering the static files
-app.use(express.static(path.join(__dirname,'/public')));
 
-app.get('/', (req, res) => {
-      res.send('hello world');
-});
-
-// app.get('/posts', (req, res) => {
-//       res.send('hello world');
-// });
-
-// app.post('/posts', (req, res) => {
-//       console.log(req.body);
-// });
-
-
-// apis 
-
-app.use('/posts',require('./routes/apis/posts'));
-
+//blog apis 
+app.use('/posts',postRoutes);
 
 // page not found
 app.all('*', (req, res) => {
@@ -55,8 +57,3 @@ app.all('*', (req, res) => {
 }); 
 
 app.use(errorHandler);
-
-
-app.listen(port,()=>{
-    console.log(`listening on ${port}`);
-});
