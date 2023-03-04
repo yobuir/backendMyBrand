@@ -7,6 +7,7 @@ const {logger } = require('./middleware/logEvents');
 const errorHandler  = require('./middleware/errorHandler');
 const mongoose= require('mongoose');
 const postRoutes=require('./routes/apis/posts');
+const commentsRoutes=require('./routes/apis/comments');
 
 // connecting string
 const  dburl='mongodb+srv://admin:admin@mybrand.xzmbnkn.mongodb.net/website?retryWrites=true&w=majority' 
@@ -50,6 +51,7 @@ app.use(express.json());
 
 //blog apis 
 app.use('/posts',postRoutes);
+app.use('/comments',commentsRoutes);
 
 // page not found
 app.all('*', (req, res) => {

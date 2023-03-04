@@ -110,3 +110,10 @@ Sat Mar 04 2023 12:27:37 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /post
 Sat Mar 04 2023 12:27:53 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /posts/640319206c9b5ce3ce0f5cde 
 Sat Mar 04 2023 12:28:22 GMT+0200 (Central Africa Time)	 POST 	 undefined 	 /posts/create 
 Sat Mar 04 2023 12:48:39 GMT+0200 (Central Africa Time)	 POST 	 undefined 	 /posts/create 
+Sat Mar 04 2023 15:08:24 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /comments/create 
+Sat Mar 04 2023 15:09:28 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /comments/create 
+Sat Mar 04 2023 15:10:23 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /comments/create 
+Sat Mar 04 2023 15:11:40 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /comments/create 
+Sat Mar 04 2023 15:12:27 GMT+0200 (Central Africa Time)	 POST 	 undefined 	 /comments/create 
+Sat Mar 04 2023 15:15:26 GMT+0200 (Central Africa Time)	 POST 	 undefined 	 /comments/create 
+Sat Mar 04 2023 15:16:15 GMT+0200 (Central Africa Time)	 POST 	 undefined 	 /comments/create 
