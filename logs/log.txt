@@ -173,3 +173,5 @@ Sat Mar 04 2023 16:50:58 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /comm
 Sat Mar 04 2023 16:51:29 GMT+0200 (Central Africa Time)	 POST 	 undefined 	 /comments/create 
 Sat Mar 04 2023 16:51:34 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /comments/all 
 Sat Mar 04 2023 16:51:42 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /comments/post/640318b2862e497de0973684 
+Sat Mar 04 2023 18:28:49 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /likes 
+Sat Mar 04 2023 18:29:37 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /likes/64035678474fc74a4ba007f0 

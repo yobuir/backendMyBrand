@@ -9,6 +9,8 @@ const mongoose= require('mongoose');
 const postRoutes=require('./routes/apis/posts');
 const commentsRoutes=require('./routes/apis/comments');
 
+const lieksRoutes=require('./routes/apis/likes');
+
 // connecting string
 const  dburl='mongodb+srv://admin:admin@mybrand.xzmbnkn.mongodb.net/website?retryWrites=true&w=majority' 
 mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
@@ -52,6 +54,7 @@ app.use(express.json());
 //blog apis 
 app.use('/posts',postRoutes);
 app.use('/comments',commentsRoutes);
+app.use('/likes',lieksRoutes);
 
 // page not found
 app.all('*', (req, res) => {
