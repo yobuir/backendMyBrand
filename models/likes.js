@@ -15,7 +15,7 @@ const likesSchema= new Schema({
         required: true
       }
 
-});
+},{timestamps:true});
 
 
 const likes= mongoose.model('Like',likesSchema)

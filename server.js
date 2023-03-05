@@ -59,6 +59,7 @@ app.use('/users',usersRouters);
 
 // page not found
 app.all('*', (req, res) => {
+    res.status(404);
     res.sendFile('404.html',{root:__dirname})
 }); 
 
