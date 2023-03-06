@@ -10,6 +10,7 @@ const postRoutes=require('./routes/apis/posts');
 const commentsRoutes=require('./routes/apis/comments');
 const likesRoutes=require('./routes/apis/likes');
 const usersRouters=require('./routes/apis/users');
+const contactRouters=require('./routes/apis/contact');
 
 // connecting string
 const  dburl='mongodb+srv://admin:admin@mybrand.xzmbnkn.mongodb.net/website?retryWrites=true&w=majority' 
@@ -56,6 +57,7 @@ app.use('/posts',postRoutes);
 app.use('/comments',commentsRoutes);
 app.use('/likes',likesRoutes);
 app.use('/users',usersRouters);
+app.use('/contacts',contactRouters);
 
 // page not found
 app.all('*', (req, res) => {
