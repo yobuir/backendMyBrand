@@ -11,7 +11,7 @@ const commentsRoutes=require('./routes/apis/comments');
 const likesRoutes=require('./routes/apis/likes');
 const usersRouters=require('./routes/apis/users');
 const contactRouters=require('./routes/apis/contact');
-
+const portfoliosRoutes=require('./routes/apis/portfolios');
 // connecting string
 const  dburl='mongodb+srv://admin:admin@mybrand.xzmbnkn.mongodb.net/website?retryWrites=true&w=majority' 
 mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
@@ -22,8 +22,6 @@ mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
 }).catch((err)=>{
     console.log(err);
 }); 
-
-
 
 
 // custom middleware
@@ -52,12 +50,13 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
 
-//blog apis 
+//endpoints  
 app.use('/posts',postRoutes);
 app.use('/comments',commentsRoutes);
 app.use('/likes',likesRoutes);
 app.use('/users',usersRouters);
 app.use('/contacts',contactRouters);
+app.use('/portfolios',portfoliosRoutes);
 
 // page not found
 app.all('*', (req, res) => {

@@ -1,20 +1,16 @@
 const mongoose = require('mongoose');
 const Schema=mongoose.Schema;
 
-const postsSchema= new Schema({ 
+const portfoliosSchema= new Schema({ 
     title:{
         type:String,
         required:true
-    },
-    snippet:{
-        type:String,
-        required:true
-    },
+    }, 
      image:{
         type:String,
         required:true
     },
-    body:{
+    link:{
         type:String,
         required:true
     },
@@ -24,5 +20,5 @@ const postsSchema= new Schema({
     }
 }, {timestamps:true});
 
-const Post=mongoose.model('Post',postsSchema);
-module.exports =Post;
+const Portfolios=mongoose.model('Portfolio',portfoliosSchema);
+module.exports =Portfolios;
