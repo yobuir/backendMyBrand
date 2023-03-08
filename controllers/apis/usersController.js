@@ -1,5 +1,10 @@
 const User=require('../../models/users');
 const bcrypt = require('bcrypt');
+const jwt= require('jsonwebtoken');
+const createToken= require('../../handler/authHandler');
+
+const maxAge = 3*60 * 24 *60;
+
 
 const listUsers = async (req, res) => {
     await User.find().then((user) => { 
@@ -9,7 +14,6 @@ const listUsers = async (req, res) => {
         return res.send({ message: "failed to fetch user",data:err.message});
     });
 };
-
 
 
 const createUser = async (req, res) => { 
@@ -31,24 +35,24 @@ const createUser = async (req, res) => {
                
               if(!error){ 
                   const userData=req.body; 
-                    const newUser= new User(userData); 
-
+                    const newUser= new User(userData);  
                     newUser.save().then((user) => { 
+                        const token = createToken(newUser._id);
+                        res.cookie('authUser',token,{httponly:true,maxAge:maxAge*1000});
                         return res
-                        .send({ message: "user created",data:user});
+                        .jsend.success({message:'User created successfully',user:user}); 
                     }).catch((err) => {
-                        return res.send({ message: "failed to create user",data:err.message});
+                        return res.jsend({ message:'User not created'});
                     });
 
-              } else{
-                    console.log("User found");
-                    return  res.send({ message: "Error creating user",error: "email have been taken" })
+              } else{ 
+                    return  res.jsend.error({ message: "Error creating user",error:"Email have been taken" })
               }  
         }).catch((err) => {
-            return  res.send({ message: "Error creating user",error: err.message })
+            return  res.send({ message: "Error creating user",error: err })
         }); 
     }else{
-         return res.send({ message: "Please confirm your password",error:"error"});
+         return res.jsend.error({ message: "Please confirm your password",error:"error"});
     }
     
 };

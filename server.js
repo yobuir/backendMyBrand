@@ -12,6 +12,10 @@ const likesRoutes=require('./routes/apis/likes');
 const usersRouters=require('./routes/apis/users');
 const contactRouters=require('./routes/apis/contact');
 const portfoliosRoutes=require('./routes/apis/portfolios');
+const authRouters=require('./routes/apis/auth');
+
+const jsend=require('jsend');
+var cookieParser = require('cookie-parser')
 // connecting string
 const  dburl='mongodb+srv://admin:admin@mybrand.xzmbnkn.mongodb.net/website?retryWrites=true&w=majority' 
 mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
@@ -41,20 +45,20 @@ const corsOptions = {
     },
     optionsSuccessStatus:200
 }
- 
-app.use(cors());
-
-
+  
+app.use(cors(corsOptions));
 // built in middleware to handle urlencoded
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
-
+app.use(jsend.middleware); 
+app.use(cookieParser())
 
 //endpoints  
 app.use('/posts',postRoutes);
 app.use('/comments',commentsRoutes);
 app.use('/likes',likesRoutes);
 app.use('/users',usersRouters);
+app.use('/auth',authRouters);
 app.use('/contacts',contactRouters);
 app.use('/portfolios',portfoliosRoutes);
 
