@@ -1,5 +1,5 @@
 const User=require('../../models/users');
-
+const bcrypt = require('bcrypt');
 
 const listUsers = async (req, res) => {
     await User.find().then((user) => { 
@@ -14,7 +14,7 @@ const listUsers = async (req, res) => {
 
 const createUser = async (req, res) => { 
     if(req.body.password === req.body.confirm_password) {
-
+      
         const existingUser= await User.find({email:req.body.email}).then((result) => {
              let error=0;
             
@@ -29,14 +29,15 @@ const createUser = async (req, res) => {
                  }
             }
                
-              if(!error){
-                    const newUser= new User(req.body); 
+              if(!error){ 
+                  const userData=req.body; 
+                    const newUser= new User(userData); 
 
                     newUser.save().then((user) => { 
                         return res
                         .send({ message: "user created",data:user});
                     }).catch((err) => {
-                        return res.send({ message: "failed create user",data:err.message});
+                        return res.send({ message: "failed to create user",data:err.message});
                     });
 
               } else{
