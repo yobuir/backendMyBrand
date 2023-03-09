@@ -2,6 +2,7 @@ const User=require('../../models/users');
 const bcrypt = require('bcrypt');
 const jwt= require('jsonwebtoken');
 const createToken= require('../../handler/authHandler');
+
 const maxAge = 3*60 * 24 *60;
 
 const login = async (req, res) => {
@@ -9,7 +10,7 @@ const login = async (req, res) => {
        await User.findOne({email:req.body.email}).then((user) => { 
          if(User){  
             bcrypt.compare(req.body.password, user.password, function(err, result) { 
-              
+
               if(result == false){
                 return res.send({ message: "Entered password was incorrect",error:"Invalid password"});
               }else{
@@ -32,5 +33,9 @@ const login = async (req, res) => {
     });
 };
 
+const logout =  async (req, res) => {
+  res.cookie('authUser','',{maxAge:1});
+  res.send({message: 'Logged out',data:''});
+};
 
-module.exports ={login}
+module.exports ={login,logout}

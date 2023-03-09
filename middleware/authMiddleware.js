@@ -1,10 +1,10 @@
 const jwt= require('jsonwebtoken');
 
 const requireAuth = (req,res, next) => {
-    const token =  req.cookie
-    console.log(token);
-    if(token){
-       jwt.verify(token, 'yobu new screet', (error,decodedToken)=>
+    let token =  req.cookie 
+    if(token  !== undefined){
+        token = token.authUser;
+       jwt.verify(token, process.env.JWT_SCRET, (error,decodedToken)=>
        {
         if(error) {
             console.log(error.message);
@@ -21,4 +21,31 @@ const requireAuth = (req,res, next) => {
    
 }
 
-module.exports =  {requireAuth};
+
+
+const checkLoggedUser = (req,res, next) => {
+       let token =  req.cookie 
+    if(token !== undefined){
+        token = token.authUser
+       jwt.verify(token,process.env.JWT_SCRET, async (error,decodedToken)=>
+       {
+        if(error) {
+            console.log(error.message);
+            res.locals.user=null;
+            next();
+        }else{
+            console.log(decodedToken);
+            let user = await User.findById(decodedToken.id);
+            res.locals.user=user;
+             next();
+        }
+       }); 
+    }
+    else {
+         res.locals.user=null;
+            next();
+     }
+   
+}
+
+module.exports =  {requireAuth,checkLoggedUser};

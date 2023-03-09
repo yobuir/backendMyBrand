@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const app= express();
 const path= require('path');
 const port=process.env.PORT || 3000;
@@ -15,10 +16,10 @@ const portfoliosRoutes=require('./routes/apis/portfolios');
 const authRouters=require('./routes/apis/auth');
 const jsend=require('jsend');
 const cookieParser = require('cookie-parser');
-const {requireAuth} = require('./middleware/authMiddleware');
+const {requireAuth,checkLoggedUser} = require('./middleware/authMiddleware');
 
 // connecting string
-const  dburl='mongodb+srv://admin:admin@mybrand.xzmbnkn.mongodb.net/website?retryWrites=true&w=majority' 
+const  dburl=process.env.DB_URL;
 mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
 .then ((result)=>{
    app.listen(port,(error)=>{
@@ -55,9 +56,7 @@ app.use(jsend.middleware);
 app.use(cookieParser())
 
 //endpoints  
-app.get('/hel',requireAuth , (req,res) => {
-    res.send({messgae:"hiii you "});
-})
+//  app.get('*',checkLoggedUser);
 app.use('/posts',postRoutes);
 app.use('/comments',commentsRoutes);
 app.use('/likes',likesRoutes);
