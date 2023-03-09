@@ -13,9 +13,10 @@ const usersRouters=require('./routes/apis/users');
 const contactRouters=require('./routes/apis/contact');
 const portfoliosRoutes=require('./routes/apis/portfolios');
 const authRouters=require('./routes/apis/auth');
-
 const jsend=require('jsend');
-var cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const {requireAuth} = require('./middleware/authMiddleware');
+
 // connecting string
 const  dburl='mongodb+srv://admin:admin@mybrand.xzmbnkn.mongodb.net/website?retryWrites=true&w=majority' 
 mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
@@ -54,6 +55,9 @@ app.use(jsend.middleware);
 app.use(cookieParser())
 
 //endpoints  
+app.get('/hel',requireAuth , (req,res) => {
+    res.send({messgae:"hiii you "});
+})
 app.use('/posts',postRoutes);
 app.use('/comments',commentsRoutes);
 app.use('/likes',likesRoutes);

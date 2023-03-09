@@ -1,9 +1,7 @@
 const User=require('../../models/users');
 const bcrypt = require('bcrypt');
-const jwt= require('jsonwebtoken');
 const createToken= require('../../handler/authHandler');
-
-const maxAge = 3*60 * 24 *60;
+let maxAge = 3*60 * 24 *60;
 
 
 const listUsers = async (req, res) => {
@@ -42,17 +40,17 @@ const createUser = async (req, res) => {
                         return res
                         .jsend.success({message:'User created successfully',user:user}); 
                     }).catch((err) => {
-                        return res.jsend({ message:'User not created'});
+                        return res.send({ message:'User not created',error:err.message});
                     });
 
               } else{ 
-                    return  res.jsend.error({ message: "Error creating user",error:"Email have been taken" })
+                    return  res.send({ message: "Error creating user",error:"Email have been taken" })
               }  
         }).catch((err) => {
             return  res.send({ message: "Error creating user",error: err })
         }); 
     }else{
-         return res.jsend.error({ message: "Please confirm your password",error:"error"});
+         return res.send({ message: "Please confirm your password",error:"error"});
     }
     
 };
