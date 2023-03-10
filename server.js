@@ -38,7 +38,7 @@ mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
 const swaggerDefinition = require('./swagger.json');
 
 // swagger apis documantion
-const options = {
+const options = { 
   swaggerDefinition,
   apis: ['../routes/*.js'], // Path to the API routes files
 };

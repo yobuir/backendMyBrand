@@ -64,22 +64,13 @@
         ], 
         "responses": {
           "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": ""
-            }
+            "description": "OK"
           },
           "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": ""
-            }
+            "description": "Unauthorized"
           },
           "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": ""
-            }
+            "description": "Internal Server Error"
           }
         }
       }
@@ -91,6 +82,119 @@
           "description": "",
           "produces": ["application/json"],
           "parameters": [ ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/posts/update/{id}": {
+        "put": {
+          "tags": ["Blogs"],
+          "summary": "This end point allows you to update a blog posts",
+          "description": "",
+          "produces": ["application/json"],
+          "parameters": [
+             {
+            "name": "id",
+            "in": "formData",
+            "description": "id of blog post",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "title of a blog",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "snipet",
+            "in": "formData",
+            "description": "snipet (intro) of a blog",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Cover image of a blog",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "formData",
+            "description": "body of a blog",
+            "required": true,
+            "type": "string"
+          }
+          
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+   "/posts/{id}": {
+        "get": {
+          "tags": ["Blogs"],
+          "summary": "This end point allows you to view single blog posts",
+          "description": "",
+          "produces": ["application/json"],
+          "parameters": [ 
+            {
+            "name": "id",
+            "in": "formData",
+            "description": "id of blog post",
+            "required": true,
+            "type": "string"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+     "/posts/{id}": {
+        "delete": {
+          "tags": ["Blogs"],
+          "summary": "This end point allows you to delete blog posts",
+          "description": "",
+          "produces": ["application/json"],
+          "parameters": [ 
+            {
+            "name": "id",
+            "in": "formData",
+            "description": "id of blog post",
+            "required": true,
+            "type": "string"
+          }
+        ], 
         "responses": {
           "200": {
             "description": "OK"

@@ -8,7 +8,7 @@ const requireAuth = (req,res, next) => {
        jwt.verify(token, process.env.JWT_SCRET, (error,decodedToken)=>
        {
         if(error) { 
-             return  res.send({ message: "Error occured perfomming task",error:error.message}).status(500);
+             return  res.send({ message: "Error occured perfomming task",error:error.message}).status(401);
             
         }else{
             console.log(decodedToken);
@@ -17,11 +17,10 @@ const requireAuth = (req,res, next) => {
        }); 
     }
     else {
-        return  res.send({ message: "Error occured perfomming task",error:"you need to be logged"}).status(500);
+        return  res.send({ message: "Error occured perfomming task",error:"you need to be logged"}).status(401);
     }
    
 }
-
 
 
 const checkLoggedUser = (req,res, next) => {
