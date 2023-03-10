@@ -90,3 +90,10 @@ Thu Mar 09 2023 23:36:19 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /post
 Thu Mar 09 2023 23:36:23 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /posts/all 
 Thu Mar 09 2023 23:37:10 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /posts/all 
 Thu Mar 09 2023 23:47:24 GMT+0200 (Central Africa Time)	 POST 	 undefined 	 /users/create 
+Fri Mar 10 2023 09:49:21 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /api-docs 
+Fri Mar 10 2023 09:49:21 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /api-docs/ 
+Fri Mar 10 2023 09:49:21 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /api-docs/swagger-ui.css 
+Fri Mar 10 2023 09:49:21 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /api-docs/swagger-ui-bundle.js 
+Fri Mar 10 2023 09:49:21 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /api-docs/swagger-ui-standalone-preset.js 
+Fri Mar 10 2023 09:49:21 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /api-docs/swagger-ui-init.js 
+Fri Mar 10 2023 09:49:22 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /api-docs/favicon-32x32.png 

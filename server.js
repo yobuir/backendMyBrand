@@ -4,9 +4,9 @@ const app= express();
 const path= require('path');
 const port=process.env.PORT || 3000;
 const cors=require('cors');
-const {logger } = require('./middleware/logEvents');
-const errorHandler  = require('./middleware/errorHandler');
 const mongoose= require('mongoose');
+const jsend=require('jsend');
+const cookieParser = require('cookie-parser');
 const postRoutes=require('./routes/apis/posts');
 const commentsRoutes=require('./routes/apis/comments');
 const likesRoutes=require('./routes/apis/likes');
@@ -14,10 +14,12 @@ const usersRouters=require('./routes/apis/users');
 const contactRouters=require('./routes/apis/contact');
 const portfoliosRoutes=require('./routes/apis/portfolios');
 const authRouters=require('./routes/apis/auth');
-const jsend=require('jsend');
-const cookieParser = require('cookie-parser');
+const {logger } = require('./middleware/logEvents');
+const errorHandler  = require('./middleware/errorHandler');
 const {requireAuth,checkLoggedUser} = require('./middleware/authMiddleware');
-
+const swaggerUI=require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');
+const { setup } = require('swagger-ui-express');
 // connecting string
 const  dburl=process.env.DB_URL;
 mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
@@ -28,6 +30,31 @@ mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
 }).catch((err)=>{
     console.log(err);
 }); 
+
+
+// swagger apis documantion
+
+const options = {
+    definition:{
+        openapi:"3.0.0",
+        info:{
+            title:"API Documentation",
+            version:"1.0.0",
+            description:"API Documentation for blog post",
+        },
+        servers:[
+            {
+                url:"http://localhost:3000"
+            }
+        ],
+       
+    },
+    apis:["./routes/apis/*.js"]
+}
+
+const specs= swaggerJsDoc(options);
+
+
 
 
 // custom middleware
@@ -55,8 +82,13 @@ app.use(express.json());
 app.use(jsend.middleware); 
 app.use(cookieParser())
 
+
+// api documentation route
+
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(specs));
+ 
 //endpoints  
-//  app.get('*',checkLoggedUser);
+// app.get('*',checkLoggedUser);
 app.use('/posts',postRoutes);
 app.use('/comments',commentsRoutes);
 app.use('/likes',likesRoutes);
