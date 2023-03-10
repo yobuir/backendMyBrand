@@ -20,6 +20,9 @@ const {requireAuth,checkLoggedUser} = require('./middleware/authMiddleware');
 const swaggerUI=require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const { setup } = require('swagger-ui-express');
+const Post=require('./models/posts');
+
+
 // connecting string
 const  dburl=process.env.DB_URL;
 mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
@@ -40,11 +43,17 @@ const options = {
         info:{
             title:"API Documentation",
             version:"1.0.0",
-            description:"API Documentation for blog post",
+            description: "blog API using express js and documented using SWAGGER",
+            contact: {
+                name: "Yobu Ir",
+                email: "yobuir@gmail.com",
+            },
         },
+        components: { 
+            },
         servers:[
             {
-                url:"http://localhost:3000"
+            url:"http://localhost:3000"
             }
         ],
        

@@ -15,8 +15,7 @@ const listUsers = async (req, res) => {
 
 
 const createUser = async (req, res) => { 
-    if(req.body.password === req.body.confirm_password) {
-      
+    if(req.body.password === req.body.confirm_password) { 
         const existingUser= await User.find({email:req.body.email}).then((result) => {
              let error=0;
             
@@ -69,8 +68,7 @@ const viewUsers = async (req, res) => {
 
 const updateUsers = async (req, res) => {
     const id=req.params.id;
-    const newUserUpdate=req.body;
-    console.log(newUserUpdate);
+    const newUserUpdate={email:req.body.email, name:req.body.name}; 
        await User.findByIdAndUpdate(id,newUserUpdate).then((user) => { 
          return res
                .send({ message: "user Updated",data:user});

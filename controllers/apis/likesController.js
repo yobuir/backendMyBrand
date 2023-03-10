@@ -1,6 +1,6 @@
 const Like=require('../../models/likes');
 
-const like_index = async (req,res) => { 
+const like_index_all = async (req,res) => { 
      await Like.find().then((result) => {
         console.log(result);
         return res
@@ -9,7 +9,6 @@ const like_index = async (req,res) => {
         return  res.send({ message: "Error viewing all likes",error: err.message })
     });
 }
-
 
 const like_index_view = async (req,res) => {
     const id=req.params.id;
@@ -52,4 +51,4 @@ const like_update = (req, res) => {
     });
 };
 
-module.exports={like_index,like_update,like_create,like_index_view}
+module.exports={like_index_all,like_update,like_create,like_index_view}
