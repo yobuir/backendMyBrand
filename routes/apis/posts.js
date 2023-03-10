@@ -63,9 +63,8 @@ const {requireAuth,checkLoggedUser} = require('../../middleware/authMiddleware')
 
 router.get('/all',postsController.post_index);
 router.get('/:id',postsController.post_view);
-
 router.post('/create',checkLoggedUser,postsController.post_create);
 router.put('/update/:id',requireAuth,postsController.post_update);
 router.delete('/:id',requireAuth,postsController.post_delete);
 
-module.exports =router;
+module.exports =router; 

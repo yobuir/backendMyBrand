@@ -19,8 +19,7 @@ const errorHandler  = require('./middleware/errorHandler');
 const {requireAuth,checkLoggedUser} = require('./middleware/authMiddleware');
 const swaggerUI=require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
-const { setup } = require('swagger-ui-express');
-const Post=require('./models/posts');
+const { setup } = require('swagger-ui-express'); 
 
 
 // connecting string
@@ -36,36 +35,16 @@ mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
 
 
 // swagger apis documantion
+const swaggerDefinition = require('./swagger.json');
 
+// swagger apis documantion
 const options = {
-    definition:{
-        openapi:"3.0.0",
-        info:{
-            title:"API Documentation",
-            version:"1.0.0",
-            description: "blog API using express js and documented using SWAGGER",
-            contact: {
-                name: "Yobu Ir",
-                email: "yobuir@gmail.com",
-            },
-        },
-        components: { 
-            },
-        servers:[
-            {
-            url:"http://localhost:3000"
-            }
-        ],
-       
-    },
-    apis:["./routes/apis/*.js"]
-}
+  swaggerDefinition,
+  apis: ['../routes/*.js'], // Path to the API routes files
+};
 
 const specs= swaggerJsDoc(options);
-
-
-
-
+ 
 // custom middleware
 app.use(logger);
 // this is for rendering the static files
@@ -98,13 +77,13 @@ app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(specs));
  
 //endpoints  
 // app.get('*',checkLoggedUser);
-app.use('/posts',postRoutes);
-app.use('/comments',commentsRoutes);
-app.use('/likes',likesRoutes);
-app.use('/users',usersRouters);
-app.use('/auth',authRouters);
-app.use('/contacts',contactRouters);
-app.use('/portfolios',portfoliosRoutes);
+app.use('/api/posts',postRoutes);
+app.use('/api/comments',commentsRoutes);
+app.use('/api/likes',likesRoutes);
+app.use('/api/users',usersRouters);
+app.use('/api/auth',authRouters);
+app.use('/api/contacts',contactRouters);
+app.use('/api/portfolios',portfoliosRoutes);
 
 // page not found
 app.all('*', (req, res) => {

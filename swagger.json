@@ -1,0 +1,108 @@
+{
+  "swagger": "2.0", 
+   "definition": { 
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    }
+  },
+  "info": {
+    "title": "API Documentation",
+    "description": "All endpoints for my roject.",
+    "version": "1.0.0",
+      "contact":{
+            "name": "Yobu Ir",
+            "email": "yobuir@gmail.com"
+        }
+      },
+    
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "schemes": ["http"],
+    "paths": {
+      "/posts/create": {
+        "post": {
+          "tags": ["Blogs"],
+          "summary": "This end point allows you to create new blog posts",
+          "description": "",
+          "produces": ["application/json"],
+          "parameters": [
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "title of a blog",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "snipet",
+            "in": "formData",
+            "description": "snipet (intro) of a blog",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Cover image of a blog",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "formData",
+            "description": "body of a blog",
+            "required": true,
+            "type": "string"
+          }
+          
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": ""
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": ""
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": ""
+            }
+          }
+        }
+      }
+    },
+      "/posts/all": {
+        "get": {
+          "tags": ["Blogs"],
+          "summary": "This end point allows you to view all saved blog posts",
+          "description": "",
+          "produces": ["application/json"],
+          "parameters": [ ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}

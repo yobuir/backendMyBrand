@@ -8,7 +8,8 @@ const maxAge = 3*60 * 24 *60;
 const login = async (req, res) => {
     const id=req.params.id;
        await User.findOne({email:req.body.email}).then((user) => { 
-         if(User){  
+        
+         if(user){  
             bcrypt.compare(req.body.password, user.password, function(err, result) { 
 
               if(result == false){

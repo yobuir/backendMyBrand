@@ -2,12 +2,13 @@ const jwt= require('jsonwebtoken');
 
 const requireAuth = (req,res, next) => {
     let token =  req.cookie 
+    console.log(token);
     if(token  !== undefined){
         token = token.authUser;
        jwt.verify(token, process.env.JWT_SCRET, (error,decodedToken)=>
        {
-        if(error) {
-            console.log(error.message);
+        if(error) { 
+             return  res.send({ message: "Error occured perfomming task",error:error.message}).status(500);
             
         }else{
             console.log(decodedToken);
@@ -16,7 +17,7 @@ const requireAuth = (req,res, next) => {
        }); 
     }
     else {
-        console.log('you need to be logged')
+        return  res.send({ message: "Error occured perfomming task",error:"you need to be logged"}).status(500);
     }
    
 }
