@@ -1,22 +1,12 @@
 const express = require('express')
 const router = express.Router(); 
-const data= {};
+const postsController= require('../../controllers/apis/postsController');
+const {checkIfUserIsLogged,UserIsAdmin} = require('../../middleware/authMiddleware'); 
+ 
+router.get('/all',postsController.post_index);
+router.get('/:id',postsController.post_view);
 
-router.route('/')
-    .get((req,res) => {
-        res.json(data);
-    })
-    .post((req,res) => {
-        console.log(req.body)
-    })
-    .put((req,res) => {
-
-    })
-    .delete((req,res) => {
-
-    });
-
-    router.route('/:id').get((req,res) => {
-        res.json({id:req.params.id})
-    })
-module.exports =router;
+router.post('/create',checkIfUserIsLogged,UserIsAdmin,postsController.post_create);
+router.put('/update/:id',checkIfUserIsLogged,UserIsAdmin,postsController.post_update);
+router.delete('/:id',checkIfUserIsLogged,UserIsAdmin,postsController.post_delete);
+module.exports =router; 
