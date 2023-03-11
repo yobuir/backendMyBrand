@@ -20,13 +20,15 @@ const userSchema = new Schema({
         minLength:[4,"Minimum password length is 4 characters"]
       },
       role:{
+        default:"user",
         type:String,
         required:true
       }
 },{timestamps:true});
 
 userSchema.pre('save', async function (next) {
- const salt= await bcrypt.genSalt();  
+const salt= await bcrypt.genSalt(); 
+ 
 //  this key wrd referes to instance created when we are going to submit or save user
  this.password = await bcrypt.hash(this.password,salt);
  next();
