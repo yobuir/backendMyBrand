@@ -13,7 +13,7 @@
   },
   "info": {
     "title": "API Documentation",
-    "description": "All endpoints for my roject.",
+    "description": "All endpoints listed bellow.",
     "version": "1.0.0",
       "contact":{
             "name": "Yobu Ir",
@@ -23,7 +23,7 @@
     
     "host": "localhost:3000",
     "basePath": "/api",
-    "schemes": ["http"],
+    "schemes": ["http:localhost:3000"],
     "paths": {
       "/posts/create": {
         "post": {
@@ -80,8 +80,7 @@
           "tags": ["Blogs"],
           "summary": "This end point allows you to view all saved blog posts",
           "description": "",
-          "produces": ["application/json"],
-          "parameters": [ ], 
+          "produces": ["application/json"],  
         "responses": {
           "200": {
             "description": "OK"
@@ -180,7 +179,7 @@
         }
       }
     },
-     "/posts/{id}": {
+    "/posts/{id}": {
         "delete": {
           "tags": ["Blogs"],
           "summary": "This end point allows you to delete blog posts",
@@ -207,6 +206,432 @@
           }
         }
       }
+    },
+    "/comments/all": {
+        "get": {
+          "tags": ["Comments"],
+          "summary": "This end point allows you to list all comments",
+          "description": "",
+          "produces": ["application/json"], 
+          "responses": {
+            "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comments/create": {
+        "post": {
+          "tags": ["Comments"],
+          "summary": "This end point allows you to  create comment",
+          "description": "", 
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "name": "user id",
+              "in": "formData",
+              "description": "user id to be identified as a commenter",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "post id",
+              "in": "formData",
+              "description": "Post id to be commented on",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "comment",
+              "in": "formData",
+              "description": "comment For the blog",
+              "required": true,
+              "type": "string"
+            }
+            
+          ],
+          "responses": {
+            "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comments/post/{id}": {
+        "get": {
+          "tags": ["Comments"],
+          "summary": "This end point allows you to delete blog posts",
+          "description": "",
+          "produces": ["application/json"],
+          "parameters": [ 
+            {
+            "name": "id",
+            "in": "formData",
+            "description": "id of blog post",
+            "required": true,
+            "type": "string"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }, 
+    "/comments/{id}": {
+        "delete": {
+          "tags": ["Comments"],
+          "summary": "This end point allows you to delete comments posted",
+          "description": "",
+          "produces": ["application/json"],
+          "parameters": [ 
+            {
+            "name": "id",
+            "in": "formData",
+            "description": "id of comment",
+            "required": true,
+            "type": "string"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+     "/comments/update/{id}": {
+        "put": {
+          "tags": ["Comments"],
+          "summary": "This end point allows you to update comment posted",
+          "description": "",
+          "produces": ["application/json"],
+          "parameters": [ 
+            {
+            "name": "id",
+            "in": "formData",
+            "description": "id of comment",
+            "required": true,
+            "type": "string"
+          }, 
+          {
+              "name": "user id",
+              "in": "formData",
+              "description": "user id to be identified as a commenter",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "post id",
+              "in": "formData",
+              "description": "Post id to be commented on",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "comment",
+              "in": "formData",
+              "description": "comment For the blog",
+              "required": true,
+              "type": "string"
+            }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+     "/contacts/all": {
+        "get": {
+          "tags": ["Contact"],
+          "summary": "This end point allows you to list all comments",
+          "description": "",
+          "produces": ["application/json"], 
+          "responses": {
+            "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+     "/contacts/create": {
+        "post": {
+          "tags": ["Contact"],
+          "summary": "This end point allows you to  create comment",
+          "description": "", 
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "name": "name",
+              "in": "formData",
+              "description": "Enter your full name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "email",
+              "in": "formData",
+              "description": "Enter your email",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "message",
+              "in": "formData",
+              "description": "message to be sent",
+              "required": true,
+              "type": "string"
+            }
+            
+          ],
+          "responses": {
+            "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+     "/contacts/delete/{id}": {
+        "delete": {
+          "tags": ["Contact"],
+          "summary": "This end point allows you to delete message sent",
+          "description": "",
+          "produces": ["application/json"],
+          "parameters": [ 
+            {
+            "name": "id",
+            "in": "formData",
+            "description": "id of comment",
+            "required": true,
+            "type": "string"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },  
+    "/contacts/contact/{id}": {
+        "get": {
+          "tags": ["Contact"],
+          "summary": "This end point allows you to view single message posts",
+          "description": "",
+          "produces": ["application/json"],
+          "parameters": [ 
+            {
+            "name": "id",
+            "in": "formData",
+            "description": "id of message post",
+            "required": true,
+            "type": "string"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/portfolios/all": {
+        "get": {
+          "tags": ["Portfolio"],
+          "summary": "This end point allows you to list all Portfolios",
+          "description": "",
+          "produces": ["application/json"], 
+          "responses": {
+            "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/portfolios/create": {
+        "post": {
+          "tags": ["Portfolio"],
+          "summary": "This end point allows you to create Portfolios",
+          "description": "",
+          "produces": ["application/json"], 
+           "parameters": [
+            {
+              "name": "title",
+              "in": "formData",
+              "description": "Enter title",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "image",
+              "in": "formData",
+              "description": "image url",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "link",
+              "in": "formData",
+              "description": "project link",
+              "required": true,
+              "type": "string"
+            }
+            
+          ],
+          "responses": {
+            "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/portfolios/update/{id}": {
+        "put": {
+          "tags": ["Portfolio"],
+          "summary": "This end point allows you to update Portfolios",
+          "description": "",
+          "produces": ["application/json"], 
+           "parameters": [
+             {
+              "name": "id",
+              "in": "formData",
+              "description": "Enter id",
+              "required": true,
+              "type": "string"    
+            },
+            {
+              "name": "title",
+              "in": "formData",
+              "description": "Enter title",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "image",
+              "in": "formData",
+              "description": "image url",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "link",
+              "in": "formData",
+              "description": "project link",
+              "required": true,
+              "type": "string"
+            }
+            
+          ],
+          "responses": {
+            "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }, 
+    "/portfolios/delete/{id}": {
+        "delete": {
+          "tags": ["Portfolio"],
+          "summary": "This end point allows you to delete portfolio",
+          "description": "",
+          "produces": ["application/json"],
+          "parameters": [ 
+            {
+            "name": "_id",
+            "in": "formData",
+            "description": "id of portfolio",
+            "required": true,
+            "type": "string"
+          }
+        ], 
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
+    
   }
 }

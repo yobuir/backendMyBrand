@@ -16,6 +16,7 @@ const portfoliosSchema= new Schema({
     },
     published:{
         type:Boolean,
+        default:false,
         required:true
     }
 }, {timestamps:true});

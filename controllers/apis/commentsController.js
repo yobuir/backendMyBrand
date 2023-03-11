@@ -42,7 +42,6 @@ const comment_update = (req, res) => {
     });
 };
 
-
 const comment_delete =  async (req, res) => {
     const id=req.params.id;
       await Comment.findByIdAndDelete(id).then((result) => {
