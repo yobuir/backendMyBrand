@@ -1,51 +1,25 @@
 const jwt= require('jsonwebtoken');
+require('dotenv').config();
 
-const requireAuth = (req,res, next) => {
-    let token =  req.cookie 
-    console.log(token);
-    if(token  !== undefined){
-        token = token.authUser;
-       jwt.verify(token, process.env.JWT_SCRET, (error,decodedToken)=>
+const checkIfUserIsLogged = async (req,res,next) => {
+    const authHeader=req.headers['authorization'];
+    if (!authHeader) return res.send({'message':'no access right provided', 'error':''}).status(401);
+    const token = authHeader.split(' ')[1];
+    await jwt.verify(token,
+                process.env.JWT_SCRET,
+                async (error,decodedToken)=>
        {
-        if(error) { 
-             return  res.send({ message: "Error occured perfomming task",error:error.message}).status(401);
-            
-        }else{
-            console.log(decodedToken);
-             next();
-        }
-       }); 
-    }
-    else {
-        return  res.send({ message: "Error occured perfomming task",error:"you need to be logged"}).status(401);
-    }
+
+        if(error)  return res.send({'message':'invalid token', 'error':error.message}).status(403); //invalid token
+        req.user=decodedToken.id;
+        next();
+       }).catch((err)=>{
+        return res.send({'message':'error occured', 'error':err.message}).status(500); //error
+       });
    
 }
 
 
-const checkLoggedUser = (req,res, next) => {
-       let token =  req.cookie 
-    if(token !== undefined){
-        token = token.authUser
-       jwt.verify(token,process.env.JWT_SCRET, async (error,decodedToken)=>
-       {
-        if(error) {
-            console.log(error.message);
-            res.locals.user=null;
-            next();
-        }else{
-            console.log(decodedToken);
-            let user = await User.findById(decodedToken.id);
-            res.locals.user=user;
-             next();
-        }
-       }); 
-    }
-    else {
-         res.locals.user=null;
-            // next();
-     }
-   
-}
 
-module.exports =  {requireAuth,checkLoggedUser};
+
+module.exports =  {checkIfUserIsLogged};

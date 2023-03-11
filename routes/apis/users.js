@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router(); 
 const usersController= require('../../controllers/apis/usersController');
-
-router.get('/all',usersController.listUsers);
-router.get('/:id',usersController.viewUsers);
+const {checkIfUserIsLogged} = require('../../middleware/authMiddleware'); 
+ 
 router.post('/create',usersController.createUser);
-router.put('/update/:id',usersController.updateUsers);
-router.delete('/delete/:id',usersController.deleteUser);
+
+router.get('/all',checkIfUserIsLogged,usersController.listUsers);
+router.get('/:id',checkIfUserIsLogged,usersController.viewUsers);
+router.put('/update/:id',checkIfUserIsLogged,usersController.updateUsers);
+router.delete('/delete/:id',checkIfUserIsLogged,usersController.deleteUser);
 
 module.exports = router;

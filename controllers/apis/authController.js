@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt= require('jsonwebtoken');
 const createToken= require('../../handler/authHandler');
 
-const maxAge = 3*60 * 24 *60;
+const maxAge = 24*60*60;
 
 const login = async (req, res) => {
     const id=req.params.id;
@@ -17,7 +17,7 @@ const login = async (req, res) => {
               }else{
                   const token = createToken(user._id);
                   res.cookie('authUser',token,{httponly:true,maxAge:maxAge*1000});
-                 return res.send({ message: "user authenticated now",data:user});
+                 return res.send({ message: "user authenticated now",data:user, token:token});
               }
               
               if(err){
@@ -34,9 +34,38 @@ const login = async (req, res) => {
     });
 };
 
+
+
+const getCurrentUser = async (req,res) => {
+    const authHeader=req.headers['authorization'];
+
+    if (!authHeader) return res.send({'message':'You need to be logged', 'error':''}).status(401);
+        const token = authHeader.split(' ')[1];
+       try {
+        jwt.verify(token, process.env.JWT_SCRET, (error,decodedToken)=>
+          {
+            if(error) { 
+                return  res.send({ message: "Token is invalid  ",error:error.message}).status(403);
+                
+            }else{ 
+                User.findById(decodedToken.id).then((user) => {
+                  return  res.send({ message: "logged user information  ",data:user}).status(200);
+                }).catch((error) => {
+                   return  res.send({ message: "error occured  ",error:error.message}).status(403);
+                });
+               
+    
+            }
+          });
+      }catch(e){
+        return res.send({'message':'error occured', 'error':e.message}).status(500); //error
+      }
+      
+    }
+
 const logout =  async (req, res) => {
   res.cookie('authUser','',{maxAge:1});
   res.send({message: 'Logged out',data:''});
 };
 
-module.exports ={login,logout}
+module.exports ={login,logout,getCurrentUser}
