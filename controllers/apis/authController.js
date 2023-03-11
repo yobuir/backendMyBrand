@@ -52,9 +52,7 @@ const getCurrentUser = async (req,res) => {
                   return  res.send({ message: "logged user information  ",data:user}).status(200);
                 }).catch((error) => {
                    return  res.send({ message: "error occured  ",error:error.message}).status(403);
-                });
-               
-    
+                }); 
             }
           });
       }catch(e){

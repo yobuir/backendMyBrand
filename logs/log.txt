@@ -897,3 +897,7 @@ Sat Mar 11 2023 12:49:09 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /api/
 Sat Mar 11 2023 12:51:06 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /api/auth/profile 
 Sat Mar 11 2023 12:51:24 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /api/auth/profile 
 Sat Mar 11 2023 12:56:21 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /api/auth/profile 
+Sat Mar 11 2023 14:15:36 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /api-docs/swagger-ui.css 
+Sat Mar 11 2023 14:15:36 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /api-docs/swagger-ui-bundle.js 
+Sat Mar 11 2023 14:15:36 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /api-docs/swagger-ui-standalone-preset.js 
+Sat Mar 11 2023 14:15:36 GMT+0200 (Central Africa Time)	 GET 	 undefined 	 /api-docs/swagger-ui-init.js 
