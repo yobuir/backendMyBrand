@@ -4,8 +4,7 @@
   "description": "apis for my brand site",
   "main": "server.js",
   "scripts": {
-    "test": "jest test --timeout 30000",
-    "dev": "jest --watchAll",
+    "test": "jest --watchAll", 
     "start": "node server.js",
     "coverage": "jest --coverage"
   },
@@ -15,7 +14,6 @@
   "author": "yobu",
   "license": "ISC",
   "dependencies": {
-    "@babel/preset-env": "^7.20.2",
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -32,9 +30,12 @@
     "validator": "^13.9.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
     "@shelf/jest-mongodb": "^4.1.7",
     "@types/jest": "^29.4.0",
     "@types/supertest": "^2.0.12",
+    "babel-jest": "^29.5.0",
     "jest": "^29.5.0",
     "mongodb-memory-server": "^8.12.0",
     "nodemon": "^2.0.20",
