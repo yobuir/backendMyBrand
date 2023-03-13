@@ -23,7 +23,7 @@
     
     "host": "localhost:3000",
     "basePath": "/api",
-    "schemes": ["http:localhost:3000"],
+    "schemes": ["http"],
     "paths": {
       "/posts/create": {
         "post": {

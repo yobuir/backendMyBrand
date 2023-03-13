@@ -36,20 +36,20 @@ const createUser = async (req, res) => {
                     newUser.save().then((user) => { 
                         const token = createToken(newUser._id);
                         res.cookie('authUser',token,{httponly:true,maxAge:maxAge*1000});
-                        return res
-                        .jsend.success({message:'User created successfully',user:user}); 
+                        return res.status(200)
+                        .send({message:'User created successfully',user:user}); 
                     }).catch((err) => {
-                        return res.send({ message:'User not created',error:err.message});
+                        return res.status(500).send({ message:'User not created',error:err.message});
                     });
 
               } else{ 
-                    return  res.send({ message: "Error creating user",error:"Email have been taken" })
+                    return  res.status(416).send({ message: "Error creating user",error:"Email have been taken" })
               }  
         }).catch((err) => {
-            return  res.send({ message: "Error creating user",error: err })
+            return  res.status(500).send({ message: "Error creating user",error: err })
         }); 
     }else{
-         return res.send({ message: "Please confirm your password",error:"error"});
+         return res.status(416).send({ message: "Please confirm your password",error:"error"});
     }
     
 };
@@ -58,10 +58,10 @@ const createUser = async (req, res) => {
 const viewUsers = async (req, res) => {
     const id=req.params.id;
        await User.findById(id).then((user) => { 
-         return res
+         return res.status(200)
                .send({ message: "viewing single user",data:user});
     }).catch((err) => {
-        return res.send({ message: "failed to fetch user",data:err.message});
+        return res.status(500).send({ message: "failed to fetch user",data:err.message});
     });
 };
 

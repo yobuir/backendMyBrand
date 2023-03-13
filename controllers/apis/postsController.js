@@ -12,10 +12,11 @@ const post_index = (req,res) => {
 const post_view =  async (req,res) => {
     const id=req.params.id;
       await Post.findById(id).then((result) => {
-       return res
+    if(!result) return res.status(404).send({ message: "not found",data:result});
+       return res.status(200)
                .send({ message: "Viewing single post",data:result});
     }).catch((err) => {
-        return  res.send({ message: "Error viewing post",error: err.message }).status(500);
+        return  res.status(500).send({ message: "Error viewing post",error: err.message });
     });
 }
 
@@ -48,10 +49,10 @@ const post_update = (req, res) => {
 const post_delete = (req,res) =>{
      const id=req.params.id;
        Post.findByIdAndDelete(id).then((result) => {
-         return res
-               .send({ message: "post deleted",data:user});
+         return res.status(200)
+               .send({ message: "post deleted",data:result});
      }).catch((err)=>{
-        return res.send({ message: "failed to delete post",data:err}).status(500);
+        return res.status(500).send({ message: "failed to delete post",data:err});
      });
 }
 

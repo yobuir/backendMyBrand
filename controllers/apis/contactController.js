@@ -14,10 +14,10 @@ const contact_create = async (req,res) => {
 
     const contact = new Contact(contactPost);
       contact.save().then ((result)=>{
-          return res
+          return res.status(200)
                .send({ message: "contact message saved",data:result});
     }).catch((err) => {
-        return  res.send({ message: "Error saving contact",error: err.message })
+        return  res.status(500).send({ message: "Error saving contact",error: err.message })
     });
 
 }
