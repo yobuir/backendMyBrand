@@ -43,13 +43,13 @@ const createUser = async (req, res) => {
                     });
 
               } else{ 
-                    return  res.status(416).send({ message: "Error creating user",error:"Email have been taken" })
+                    return  res.status(500).send({ message: "Error creating user",error:"Email have been taken" })
               }  
         }).catch((err) => {
             return  res.status(500).send({ message: "Error creating user",error: err })
         }); 
     }else{
-         return res.status(416).send({ message: "Please confirm your password",error:"error"});
+         return res.status(500).send({ message: "Please confirm your password",error:"error"});
     }
     
 };

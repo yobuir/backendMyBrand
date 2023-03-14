@@ -40,7 +40,7 @@
             "type": "string"
           },
           {
-            "name": "snipet",
+            "name": "snippet",
             "in": "formData",
             "description": "snipet (intro) of a blog",
             "required": true,

@@ -26,10 +26,10 @@ const post_create = (req, res) => {
    
     const post = new Post(userPost);
       post.save().then ((result)=>{
-          return res
+          return res.status(200)
                .send({ message: "post saved",data:result});
     }).catch((err) => {
-        return  res.send({ message: "Error saving post",error: err.message }).status(500);
+        return  res.status(500).send({ message: "Error saving post",error: err.message }).status(500);
     });
 };
 

@@ -4,9 +4,8 @@
   "description": "apis for my brand site",
   "main": "server.js",
   "scripts": {
-    "test": "jest --watchAll", 
-    "start": "node server.js",
-    "coverage": "jest --coverage"
+    "test": "mocha tests --timeout 30000 --watchAll",
+    "start": "node server.js"
   },
   "keywords": [
     "apis"
@@ -15,31 +14,25 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsend": "^1.1.0",
     "jsonwebtoken": "^9.0.0",
+    "mocha": "^10.2.0",
     "mongoose": "^7.0.0",
     "mongoose-to-swagger": "^1.4.0",
+    "multer": "^1.4.5-lts.1",
+    "nyc": "^15.1.0",
+    "supertest": "^6.3.3",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.2",
-    "uuid": "^9.0.0",
     "validator": "^13.9.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.0",
-    "@babel/preset-env": "^7.20.2",
-    "@shelf/jest-mongodb": "^4.1.7",
-    "@types/jest": "^29.4.0",
-    "@types/supertest": "^2.0.12",
-    "babel-jest": "^29.5.0",
-    "jest": "^29.5.0",
-    "mongodb-memory-server": "^8.12.0",
-    "nodemon": "^2.0.20",
-    "supertest": "^6.3.3",
-    "ts-jest": "^29.0.5"
+    "nodemon": "^2.0.20"
   }
 }
