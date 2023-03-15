@@ -14,7 +14,7 @@ const usersRouters=require('./routes/apis/users');
 const contactRouters=require('./routes/apis/contact');
 const portfoliosRoutes=require('./routes/apis/portfolios');
 const authRouters=require('./routes/apis/auth');
-const {logger } = require('./middleware/logEvents');
+// const {logger } = require('./middleware/logEvents');
 const errorHandler  = require('./middleware/errorHandler');
 const {requireAuth,checkLoggedUser} = require('./middleware/authMiddleware');
 const swaggerUI=require('swagger-ui-express');
@@ -23,6 +23,7 @@ const { setup } = require('swagger-ui-express');
 
 
 // connecting string
+
 const  dburl=process.env.DB_URL;
 mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
 .then ((result)=>{
@@ -46,24 +47,25 @@ const options = {
 const specs= swaggerJsDoc(options);
  
 // custom middleware
-app.use(logger);
+// app.use(logger);
 // this is for rendering the static files
 app.use(express.static(path.join(__dirname,'/public')));
 
 // third party middleware 
-const whiteList= ['http://127.0.0.1:5500','http://localhost:3000'];
-const corsOptions = {
-    origin:function(origin,callback){
-        if(whiteList.indexOf(origin) !== -1 || !origin){
-            callback(null, true)
-        }else{
-            callback(new Error("You are not allowed to access this apis"));
-        }
-    },
-    optionsSuccessStatus:200
-}
+// const whiteList= ['http://127.0.0.1:5500','http://localhost:3000'];
+// const corsOptions = {
+//     origin:function(origin,callback){
+//         if(whiteList.indexOf(origin) !== -1 || !origin){
+//             callback(null, true)
+//         }else{
+//             callback(new Error("You are not allowed to access this apis"));
+//         }
+//     },
+//     optionsSuccessStatus:200
+// }
   
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors())
 // built in middleware to handle urlencoded
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
@@ -91,6 +93,6 @@ app.all('*', (req, res) => {
     res.sendFile('404.html',{root:__dirname})
 }); 
 
-app.use(errorHandler);
+// app.use(errorHandler);
 
 module.exports=app;
