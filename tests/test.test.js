@@ -381,6 +381,136 @@ describe("all API", () => {
       //       }); 
 
       //  });
-    
-        
-});
+
+
+
+
+describe('portfolio apis ', () => {
+
+          // it("It should get all portfolio", (done) => {
+          //   chai
+          //     .request(app)
+          //     .get("/api/portfolios/all")
+          //     .end((err, response) => {
+          //       response.should.have.status(200); 
+          //       done();
+          //     });
+          // });
+ 
+          //  it('should  create portolio', function (done) { 
+          //         const loguser = {
+          //               email: 'demo@gmail.com',
+          //               password: 'test'
+          //             };
+                      
+          //             chai
+          //               .request(app)
+          //               .post("/api/auth/login")
+          //               .send(loguser)
+          //               .end((err, response) => {
+          //                 response.should.have.status(200); 
+          //                 response.body.should.have.property("token");
+          //                 const token =response.body.token;  
+          //                 const portfolio={
+          //                       published:true,
+          //                       image:"https://images.unsplash.com/photo-1604964432806-254d07c11f32?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+          //                       title:"project 1",
+          //                       link:"stepin.rw"
+          //                   }
+                        
+          //                 chai  
+          //                     .request(app)
+          //                       .post('/api/portfolios/create')
+          //                       .set({ Authorization: `Bearer ${token}` }) 
+          //                       .send(portfolio) 
+          //                       .end((err,response) => {  
+          //                         response.should.have.status(200);
+          //                           done();
+          //                       }); 
+          //               }); 
+                       
+
+          //   });
+            
+        // it('should  delete portolio [logged in]', function (done) {  
+        //   const loguser = {
+        //         email: 'demo@gmail.com',
+        //         password: 'test'
+        //       };
+              
+        //       chai
+        //         .request(app)
+        //         .post("/api/auth/login")
+        //         .send(loguser)
+        //         .end((err, response) => {
+        //           response.should.have.status(200); 
+        //           response.body.should.have.property("token");
+        //           const token =response.body.token; 
+                  
+        //           const portfolio={
+        //                         published:true,
+        //                         image:"https://images.unsplash.com/photo-1604964432806-254d07c11f32?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+        //                         title:"project 1",
+        //                         link:"stepin.rw"
+        //                     } 
+        //               chai 
+        //                 .request(app)
+        //                 .post('/api/portfolios/create')
+        //                 .set({ Authorization: `Bearer ${token}` }) 
+        //                 .send(portfolio) 
+        //                 .end((err,response) => {   
+        //                   response.should.have.status(200); 
+        //                   const id=response.body.data._id; 
+                        
+        //                   chai  
+        //                       .request(app)
+        //                       .delete(`/api/portfolios/delete/${id}`)
+        //                       .set({ Authorization: `Bearer ${token}` })  
+        //                       .end((err,response) => {   
+        //                           response.should.have.status(200);
+        //                           done();
+        //                     });  
+        //                 }); 
+                  
+        //         }); 
+                
+
+        // }); 
+
+        it('should  update portolio [logged in]', function (done) {  
+          const loguser = {
+                email: 'demo@gmail.com',
+                password: 'test'
+              };
+          const portfolio={
+                  published:false,
+                  image:"https://images.unsplash.com/photo-1604964432806-254d07c11f32?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+                  title:"project updated",
+                  link:"stepin.rw"
+              }
+                  
+              chai
+                .request(app)
+                .post("/api/auth/login")
+                .send(loguser)
+                .end((err, response) => {
+                  response.should.have.status(200); 
+                  response.body.should.have.property("token");
+                  const token =response.body.token;   
+                        const id='6411d42c02f0a4df30533bcc';  
+                          chai  
+                              .request(app)
+                              .put(`/api/portfolios/update/${id}`)
+                              .send(portfolio)
+                              .set({ Authorization: `Bearer ${token}` })  
+                              .end((err,response) => {   
+                                  response.should.have.status(200);
+                                  done();
+                            });  
+                        }); 
+                  
+                }); 
+                
+
+        }); 
+  });  
