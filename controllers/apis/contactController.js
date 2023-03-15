@@ -1,4 +1,4 @@
-const Contact=require('../../models/Contact');
+const Contact=require('../../models/contact');
 
 const contact_index = async  (req,res) =>{
    await Contact.find().then((result) =>{
