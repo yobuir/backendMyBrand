@@ -24,7 +24,7 @@ const { setup } = require('swagger-ui-express');
 
 // connecting string
 
-const  dburl=process.env.DB_URL;
+const  dburl='mongodb+srv://admin:admin@cluster0.oodujcz.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
 .then ((result)=>{
    app.listen(port,(error)=>{

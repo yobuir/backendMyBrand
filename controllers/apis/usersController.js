@@ -70,10 +70,10 @@ const updateUsers = async (req, res) => {
     const id=req.params.id;
     const newUserUpdate={email:req.body.email, name:req.body.name}; 
        await User.findByIdAndUpdate(id,newUserUpdate).then((user) => { 
-         return res
+         return res.status(200)
                .send({ message: "user Updated",data:user});
     }).catch((err) => {
-        return res.send({ message: "failed to update user",data:err.message});
+        return res.status(500).send({ message: "failed to update user",data:err.message});
     });
 };
 

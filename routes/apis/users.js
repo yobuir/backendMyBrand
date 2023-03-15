@@ -8,6 +8,5 @@ router.post('/create',usersController.createUser);
 router.get('/all',checkIfUserIsLogged,UserIsAdmin,usersController.listUsers);
 router.get('/:id',checkIfUserIsLogged,usersController.viewUsers);
 router.put('/update/:id',checkIfUserIsLogged,usersController.updateUsers);
-router.delete('/delete/:id',checkIfUserIsLogged,usersController.deleteUser);
-
+router.delete('/delete/:id',checkIfUserIsLogged,usersController.deleteUser)
 module.exports = router;
