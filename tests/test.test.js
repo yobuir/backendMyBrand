@@ -55,7 +55,7 @@ describe("all API", () => {
                       .request(app)
                         .post('/api/users/create') 
                         .send(user)
-                        .end((err,response) => {  
+                        .end((err,response) => {   
                            response.should.have.status(200);
                             done();
                         });
@@ -361,8 +361,7 @@ describe("all API", () => {
                                 .set({ Authorization: `Bearer ${token}` }) 
                                 .send(post) 
                                 .end((err,response) => {   
-                                  response.should.have.status(200);
-                                  console.log(response.body.data._id);
+                                  response.should.have.status(200); 
                                   const id=response.body.data._id; 
                                 
                                   chai  
