@@ -2,7 +2,7 @@ name: Integration testing
 
 on:
   push:
-    branches: [ "tesing" ]
+    branches: [ "deploy" ]
   pull_request:
     branches: [ "deploy" ]
 
@@ -27,6 +27,9 @@ jobs:
 
   unit-testing: 
     runs-on: ubuntu-latest
+    env:
+      PORT: ${{secrets.PORT}} 
+      DATABASE_URI: ${{secrets.DATABASE_URI}}
 
     strategy:
       matrix:
