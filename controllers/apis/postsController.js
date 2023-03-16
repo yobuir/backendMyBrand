@@ -5,7 +5,7 @@ const post_index = (req,res) => {
         return res
                .send({ message: "viewing posts",data:result});
     }).catch((err) => {
-        return  res.send({ message: "Error viewing posts",error: err.message })
+        return  res.send({ message: "Error viewing posts",error: err.message }).status(500);
     });
 }
 
@@ -15,7 +15,7 @@ const post_view =  async (req,res) => {
        return res
                .send({ message: "Viewing single post",data:result});
     }).catch((err) => {
-        return  res.send({ message: "Error viewing post",error: err.message })
+        return  res.send({ message: "Error viewing post",error: err.message }).status(500);
     });
 }
 
@@ -28,7 +28,7 @@ const post_create = (req, res) => {
           return res
                .send({ message: "post saved",data:result});
     }).catch((err) => {
-        return  res.send({ message: "Error saving post",error: err.message })
+        return  res.send({ message: "Error saving post",error: err.message }).status(500);
     });
 };
 
@@ -40,7 +40,7 @@ const post_update = (req, res) => {
          return res
                .send({ message: "post updated",data:result});
     }).catch((err) => {
-        return  res.send({ message: "Error updating post",error: err.message })
+        return  res.send({ message: "Error updating post",error: err.message }).status(500);
     });
 };
 
@@ -48,9 +48,10 @@ const post_update = (req, res) => {
 const post_delete = (req,res) =>{
      const id=req.params.id;
        Post.findByIdAndDelete(id).then((result) => {
-        res.send(res);
+         return res
+               .send({ message: "post deleted",data:user});
      }).catch((err)=>{
-        console.log(err.message);
+        return res.send({ message: "failed to delete post",data:err}).status(500);
      });
 }
 

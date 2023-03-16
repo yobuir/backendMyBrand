@@ -1,0 +1,14 @@
+#swagger
+  /posts:
+    get:
+      summary: returns  all posts
+      responses:
+        200:
+          description: listing all posts
+          content:
+            application/json:
+              schema:
+                type:array
+              items:
+                $ref: '#/components/swaggerSchema'
+ 

@@ -1,4 +1,7 @@
 const User=require('../../models/users');
+const bcrypt = require('bcrypt');
+const createToken= require('../../handler/authHandler');
+let maxAge = 3*60 * 24 *60;
 
 
 const listUsers = async (req, res) => {
@@ -11,10 +14,8 @@ const listUsers = async (req, res) => {
 };
 
 
-
 const createUser = async (req, res) => { 
-    if(req.body.password === req.body.confirm_password) {
-
+    if(req.body.password === req.body.confirm_password) { 
         const existingUser= await User.find({email:req.body.email}).then((result) => {
              let error=0;
             
@@ -29,22 +30,23 @@ const createUser = async (req, res) => {
                  }
             }
                
-              if(!error){
-                    const newUser= new User(req.body); 
-
+              if(!error){ 
+                  const userData=req.body; 
+                    const newUser= new User(userData);  
                     newUser.save().then((user) => { 
+                        const token = createToken(newUser._id);
+                        res.cookie('authUser',token,{httponly:true,maxAge:maxAge*1000});
                         return res
-                        .send({ message: "user created",data:user});
+                        .jsend.success({message:'User created successfully',user:user}); 
                     }).catch((err) => {
-                        return res.send({ message: "failed create user",data:err.message});
+                        return res.send({ message:'User not created',error:err.message});
                     });
 
-              } else{
-                    console.log("User found");
-                    return  res.send({ message: "Error creating user",error: "email have been taken" })
+              } else{ 
+                    return  res.send({ message: "Error creating user",error:"Email have been taken" })
               }  
         }).catch((err) => {
-            return  res.send({ message: "Error creating user",error: err.message })
+            return  res.send({ message: "Error creating user",error: err })
         }); 
     }else{
          return res.send({ message: "Please confirm your password",error:"error"});
@@ -66,8 +68,7 @@ const viewUsers = async (req, res) => {
 
 const updateUsers = async (req, res) => {
     const id=req.params.id;
-    const newUserUpdate=req.body;
-    console.log(newUserUpdate);
+    const newUserUpdate={email:req.body.email, name:req.body.name}; 
        await User.findByIdAndUpdate(id,newUserUpdate).then((user) => { 
          return res
                .send({ message: "user Updated",data:user});

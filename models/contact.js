@@ -1,9 +1,19 @@
 const mongoose = require('mongoose');
-const  Schema=mongoose.Schema;
+const Schema=mongoose.Schema;
 
-
-const contactSchema = new Schema ({
-    
-});
-const contact = mongoose.model('Contact', contactSchema);
-module.exports = {contact};
+const contactSchema = new Schema({  
+     name: {
+        type: String,
+        required: true
+     },
+      email:{
+        type: String,
+        required: true
+      },
+      message:{
+        type: String,
+        required:true
+      }
+},{timestamps:true});
+const Contact = mongoose.model('Contact', contactSchema);
+module.exports = Contact; 
