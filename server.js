@@ -1,5 +1,5 @@
 const express = require('express');
-require('dotenv').config();
+require('dotenv').config()
 const app= express();
 const path= require('path');
 const port=process.env.PORT || 3000;
@@ -20,11 +20,11 @@ const {requireAuth,checkLoggedUser} = require('./middleware/authMiddleware');
 const swaggerUI=require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const { setup } = require('swagger-ui-express'); 
-
-
+ 
 // connecting string
 
-const  dburl='mongodb+srv://admin:admin@cluster0.oodujcz.mongodb.net/test?retryWrites=true&w=majority';
+const  dburl=process.env.DB_URL;
+// console.log(dburl);
 mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
 .then ((result)=>{
    app.listen(port,(error)=>{
@@ -34,7 +34,7 @@ mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
     console.log(err);
 }); 
 
-
+ 
 // swagger apis documantion
 const swaggerDefinition = require('./swagger.json');
 
