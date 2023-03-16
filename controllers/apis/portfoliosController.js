@@ -2,10 +2,10 @@ const Portfolios= require('../../models/portfolios');
 
 const portfolios_index = (req,res) => {
       Portfolios.find().then((result) => {
-        return res
+        return res.status(200)
                .send({ message: "viewing Portfolios",data:result});
     }).catch((err) => {
-        return  res.send({ message: "Error viewing Portfolios",error: err.message })
+        return  res.status(500).send({ message: "Error viewing Portfolios",error: err.message })
     });
 }
 
@@ -26,10 +26,10 @@ const portfolios_create = async (req, res) => {
     
         const postuserPortfolios = new Portfolios(userPortfolios);
         postuserPortfolios.save().then ((result)=>{
-            return res
+            return res.status(200)
                 .send({ message: "Portfolio saved",data:result});
         }).catch((err) => {
-            return  res.send({ message: "Error saving Portfolio",error: err.message }).status(500);
+            return  res.status(500).send({ message: "Error saving Portfolio",error: err.message }).status(500);
         });
     };
 

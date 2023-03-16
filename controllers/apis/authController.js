@@ -13,24 +13,24 @@ const login = async (req, res) => {
             bcrypt.compare(req.body.password, user.password, function(err, result) { 
 
               if(result == false){
-                return res.send({ message: "Entered password was incorrect",error:"Invalid password"});
+                return res.status(500).send({ message: "Entered password was incorrect",error:"Invalid password"});
               }else{
                   const token = createToken(user._id);
                   res.cookie('authUser',token,{httponly:true,maxAge:maxAge*1000});
-                 return res.send({ message: "user authenticated now",data:user, token:token});
+                 return res.status(200).send({ message: "user authenticated now",data:user, token:token});
               }
               
               if(err){
-                return res.send({ message: "Error occured",error:err.message});
+                return res.status(500).send({ message: "Error occured",error:err.message});
               } 
             }); 
          }else{
-        return res
+        return res.status(500)
                .send({ message: "Entered email was incorrect",error:'Email was not found'})
          }
 
     }).catch((err) => {
-        return res.send({ message: "Error occured",error:err.message});
+        return res.status(500).send({ message: "Error occured",error:err.message});
     });
 };
 

@@ -1,22 +1,21 @@
 const Like=require('../../models/likes');
 
 const like_index_all = async (req,res) => { 
-     await Like.find().then((result) => {
-        console.log(result);
-        return res
-               .send({ message: "viewing all likes for post",data:result});
+     await Like.find().then((result) => { 
+        return res.status(200)
+               .send({ message: "Viewing all likes for post",data:result});
     }).catch((err) => {
-        return  res.send({ message: "Error viewing all likes",error: err.message })
+        return  res.status(500).send({ message: "Error viewing all likes",error: err.message })
     });
 }
 
 const like_index_view = async (req,res) => {
     const id=req.params.id;
      await Like.find({post_id:id,},{_id:0,__v:0}).then((result) => {
-        return res
+        return res.status(200)
                .send({ message: "viewing  likes for post",data:result});
     }).catch((err) => {
-        return  res.send({ message: "Error viewing likes",error: err.message })
+        return  res.status(500).send({ message: "Error viewing likes",error: err.message })
     });
 }
 
