@@ -5,7 +5,6 @@ const {checkIfUserIsLogged,UserIsAdmin} = require('../../middleware/authMiddlewa
  
 router.get('/all',postsController.post_index);
 router.get('/:id',postsController.post_view);
-
 router.post('/create',checkIfUserIsLogged,UserIsAdmin,postsController.post_create);
 router.put('/update/:id',checkIfUserIsLogged,UserIsAdmin,postsController.post_update);
 router.delete('/:id',checkIfUserIsLogged,UserIsAdmin,postsController.post_delete);

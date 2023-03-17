@@ -21,7 +21,7 @@
         }
       },
     
-    "host": "localhost:3000",
+    "host": "https://mybrandbackend.up.railway.app",
     "basePath": "/api",
     "schemes": ["http"],
     "paths": {
