@@ -7,8 +7,8 @@ const maxAge = 24*60*60;
 
 const login = async (req, res) => {
     const id=req.params.id;
+
        await User.findOne({email:req.body.email}).then((user) => { 
-        
          if(user){  
             bcrypt.compare(req.body.password, user.password, function(err, result) { 
 
@@ -25,6 +25,7 @@ const login = async (req, res) => {
               } 
             }); 
          }else{
+             // console.log(req.body.email);
         return res.status(500)
                .send({ message: "Entered email was incorrect",error:'Email was not found'})
          }

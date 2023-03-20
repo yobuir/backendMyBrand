@@ -6,28 +6,26 @@ const chai =require("chai");
 const chaiHttp =require ("chai-http"); 
 chai.should();
 chai.use(chaiHttp);
-// chai.config.includeStack = true; // turn on stack trace
-// chai.config.showDiff = false;
-// chai.config.truncateThreshold = 0;
+chai.config.includeStack = true; // turn on stack trace
+chai.config.showDiff = false;
+chai.config.truncateThreshold = 0;
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 describe("all API", () => {
   /**
    * Test the USER route
    */
-  before(() => {  
-      // const uri = "mongodb+srv://admin:admin@cluster0.oodujcz.mongodb.net/?retryWrites=true&w=majority";
-      const uri=process.env.TEST_MONGO_URI;
-      const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-      client.connect(err => {
-        const collection = client.db("test").collection("devices");
-        // perform actions on the collection object
-        client.close();
+      before(() => {  
+          // const uri = "mongodb+srv://admin:admin@cluster0.oodujcz.mongodb.net/?retryWrites=true&w=majority";
+          // const uri=process.env.TEST_MONGO_URI;
+          // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+          // client.connect(err => {
+          //   const collection = client.db("test").collection("devices");
+          //   // perform actions on the collection object
+          //   client.close();
+          // });
+
       });
-
-  });
-
- 
 
        describe('user apis ', () => { 
 
