@@ -16,14 +16,14 @@ describe("all API", () => {
    * Test the USER route
    */
       before(() => {  
-          // const uri = "mongodb+srv://admin:admin@cluster0.oodujcz.mongodb.net/?retryWrites=true&w=majority";
+          const uri = "mongodb+srv://admin:admin@cluster0.oodujcz.mongodb.net/?retryWrites=true&w=majority";
           // const uri=process.env.TEST_MONGO_URI;
-          // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-          // client.connect(err => {
-          //   const collection = client.db("test").collection("devices");
-          //   // perform actions on the collection object
-          //   client.close();
-          // });
+          const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+          client.connect(err => {
+            const collection = client.db("test").collection("devices");
+            // perform actions on the collection object
+            client.close();
+          });
 
       });
 
