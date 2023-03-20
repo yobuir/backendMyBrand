@@ -23,16 +23,16 @@ const { setup } = require('swagger-ui-express');
  
 // connecting string
 
-// const  dburl="mongodb+srv://admin:admin@cluster0.oodujcz.mongodb.net/website?retryWrites=true&w=majority";
-// // console.log(dburl);
-// mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
-// .then ((result)=>{
-//    app.listen(port,(error)=>{
-//         console.log(`listening on ${port}`);
-//     });
-// }).catch((err)=>{
-//     console.log(err);
-// }); 
+const  dburl="mongodb+srv://admin:admin@cluster0.oodujcz.mongodb.net/website?retryWrites=true&w=majority";
+// console.log(dburl);
+mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
+.then ((result)=>{
+   app.listen(port,(error)=>{
+        console.log(`listening on ${port}`);
+    });
+}).catch((err)=>{
+    console.log(err);
+}); 
 
  
 // swagger apis documantion

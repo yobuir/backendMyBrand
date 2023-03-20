@@ -6,9 +6,7 @@ const chai =require("chai");
 const chaiHttp =require ("chai-http"); 
 chai.should();
 chai.use(chaiHttp);
-chai.config.includeStack = true; // turn on stack trace
-chai.config.showDiff = false;
-chai.config.truncateThreshold = 0;
+  
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 describe("all API", () => {
