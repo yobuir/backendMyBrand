@@ -1,5 +1,5 @@
 const express = require('express');
-require('dotenv').config()
+require('dotenv').config();
 const app= express();
 const path= require('path');
 const port=process.env.PORT || 3000;
@@ -10,7 +10,7 @@ const cookieParser = require('cookie-parser');
 const postRoutes=require('./routes/apis/posts');
 const commentsRoutes=require('./routes/apis/comments');
 const likesRoutes=require('./routes/apis/likes');
-const usersRouters=require('./routes/apis/usersController');
+const usersRouters=require('./routes/apis/users');
 const contactRouters=require('./routes/apis/contact');
 const portfoliosRoutes=require('./routes/apis/portfolios');
 const authRouters=require('./routes/apis/auth');
@@ -20,6 +20,7 @@ const {requireAuth,checkLoggedUser} = require('./middleware/authMiddleware');
 const swaggerUI=require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const { setup } = require('swagger-ui-express'); 
+
  
 // connecting string
 
