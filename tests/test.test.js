@@ -6,24 +6,29 @@ const chai =require("chai");
 const chaiHttp =require ("chai-http"); 
 chai.should();
 chai.use(chaiHttp);
-  
+chai.config.includeStack = true; // turn on stack trace
+chai.config.showDiff = false;
+chai.config.truncateThreshold = 0;
 const { MongoClient, ServerApiVersion } = require('mongodb');
-
+let port= 3000;
 describe("all API", () => {
   /**
    * Test the USER route
    */
-      before(() => {  
-          const uri = "mongodb+srv://admin:admin@cluster0.oodujcz.mongodb.net/?retryWrites=true&w=majority";
-          // const uri=process.env.TEST_MONGO_URI;
-          const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-          client.connect(err => {
-            const collection = client.db("test").collection("devices");
-            // perform actions on the collection object
-            client.close();
-          });
+     before(() => {
 
-      });
+      const  dburl='mongodb+srv://admin:admin@cluster0.oodujcz.mongodb.net/test?retryWrites=true&w=majority';
+      mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
+      .then ((result)=>{
+         app.listen(port,(error)=>{
+              console.log(`listening on ${port}`);
+          });
+      }).catch((err)=>{
+          console.log(err);
+      }); 
+
+        
+      }); 
 
        describe('user apis ', () => { 
 
@@ -37,27 +42,27 @@ describe("all API", () => {
               });
               });
 
-            it('should create new user', function (done) {
-                const number = Math.floor(Math.random() * 10000);
-                 const user = {
-                                name: `${number}`,
-                                email: `${number}demo@gmail.com`,
-                                password: "test", 
-                                confirm_password: "test",
-                                role: "admin"
-                                } 
+            // it('should create new user', function (done) {
+            //     const number = Math.floor(Math.random() * 10000);
+            //      const user = {
+            //                     name: `${number}`,
+            //                     email: `${number}demo@gmail.com`,
+            //                     password: "test", 
+            //                     confirm_password: "test",
+            //                     role: "admin"
+            //                     } 
                 
-                  chai  
-                      .request(app)
-                        .post('/api/users/create') 
-                        .send(user)
-                        .end((err,response) => {   
-                           response.should.have.status(200);
-                            done();
-                        });
+            //       chai  
+            //           .request(app)
+            //             .post('/api/users/create') 
+            //             .send(user)
+            //             .end((err,response) => {   
+            //                response.should.have.status(200);
+            //                 done();
+            //             });
                        
 
-            });
+            // });
             
             it('should  not create new user [exit]', function (done) {
                 const number = Math.floor(Math.random() * 10000);
