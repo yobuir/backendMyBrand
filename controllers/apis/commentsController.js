@@ -12,7 +12,7 @@ const comment_index = (req,res) =>{
 
 const comment_create= (req,res) =>{
     const newComment= new Comment(req.body);
-    console.log(req.body);
+    // console.log(newComment);
     newComment.save().then((result) =>{ 
         return res.status(200)
                 .send({ message: "Comment sent",data:result});
@@ -46,7 +46,7 @@ const comment_update = (req, res) => {
 const comment_delete =  async (req, res) => {
     const id=req.params.id;
       await Comment.findByIdAndDelete(id).then((result) => {
-             return res.status(200)
+             return res
                     .send({ message: "Comment deleted"});
         }).catch((err)=>{
              return res
@@ -54,6 +54,12 @@ const comment_delete =  async (req, res) => {
                     .json({ message: "Something went wrong", error: `Error: ${err}` });
         });
 };
+
+
+
+
+
+
 module.exports= {
   comment_create,comment_index,comment_view,comment_delete,comment_update
 }
