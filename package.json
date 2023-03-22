@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha tests --timeout 30000",
     "start": "node server.js",
-    "coverage": "c8 --all --reporter=text mocha tests --recursive --exit --timeout 80000 ",
+    "coverage": "c8 --all --reporter=text mocha tests --recursive --exit --timeout 80000 "
   },
   "keywords": [
     "apis",
